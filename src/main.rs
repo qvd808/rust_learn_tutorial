@@ -1,13 +1,142 @@
 #![allow(unused)]
 
 use std::io;
+use std::process::Output;
 use rand::Rng;
 use std::io::{Write, BufReader, BufRead, ErrorKind};
 use std::fs::File;
 use std::cmp::Ordering;
+use std::ops::Add;
+use std::collections::{hash_map, HashMap};
+
+mod restaurant;
+use crate::restaurant::order_food;
+
+mod binary_tree;
+
+fn sum_list(list: &[i32]) -> i32 {
+    let mut sum = 0;
+    for &val in list.iter() {
+        sum += &val;
+    }
+    sum
+}
+
+fn get_sum_gen<T:Add<Output = T>>(x: T, y: T) -> T {
+    return x + y;
+}
+
+fn print_str(x: String) {
+    println!("A string {}", x);
+}
+
+fn print_return_string(x: String) -> String {
+    println!("A string {}", x);
+    return x;
+}
+
+fn change_string(name: &mut String){
+    name.push_str(" is happy ");
+    println!("Message: {}", name);
+}
 
 
 fn main() {
+    type BinaryTree = binary_tree::binary_tree::TreeNode<i32>;
+
+    let node1 = BinaryTree::new(1)
+        .right(BinaryTree::new(3))
+        .left(BinaryTree::new(2));
+
+    node1.in_order();
+
+    // order_food();
+
+    // struct Rectangle <T, U> {
+    //     length: T, 
+    //     height: U,
+    // }
+
+    // let rec = Rectangle{
+    //     length: 4, height: 10.5
+    // };
+
+    // trait Shape {
+    //     fn new(length: f32, width: f32) -> Self;
+    //     fn area(&self) -> f32;
+
+    // }
+    // struct Rectangle {length: f32, width: f32};
+    // struct Circle {length: f32, width: f32};
+
+    // impl Shape for Rectangle {
+    //     fn new(length: f32, width: f32) -> Rectangle {
+    //         return Rectangle{length, width};
+    //     }
+    //     fn area(&self) -> f32 {
+    //         return self.length * self.width;
+    //     }
+    // }
+
+    // impl Shape for Circle {
+    //     fn new(length: f32, width: f32) -> Circle {
+    //         return Circle{length, width};
+    //     }
+    //     fn area(&self) -> f32 {
+    //         return (self.length / 2.0).powf(2.0) * 3.141592;
+    //     }
+    // }
+
+    // let rec: Rectangle = Shape::new(10.0, 10.0);
+    // let circ: Circle = Shape::new(10.0, 10.0);
+    // println!("Rec Area: {}", rec.area());
+    // println!("Circ Area: {}", circ.area());
+
+    // struct Customer {
+    //     name: String,
+    //     address: String, 
+    //     balance: f32,
+    // }
+
+    // let mut bob = Customer{
+    //     name: String::from("Bob Smith"),
+    //     address: String::from("555 Main st"),
+    //     balance: 234.50
+    // };
+
+    // bob.address = String::from("505 Main st");
+    // println!("Bob address is {}", bob.address );
+
+    // let mut heroes = HashMap::new();
+    // heroes.insert("Superman", "Clark Kent");
+    // heroes.insert("Batman", "Bruce Wayne");
+    // heroes.insert("Flash", "Barry Allen");
+
+    // for (k, v ) in heroes.iter() {
+    //     println!("{} = {}", k, v);
+    // }
+
+    // println!("Length: {}", heroes.len());
+    // println!("Is batman a heroes: {}", heroes.contains_key(&"Batman"));
+    // println!("Superman is {}", heroes["Superman"]);
+
+
+    // let mut str1 = String::from("World");
+    // // let str2 = str1.clone();
+    // // println!("Hello {}", str1);
+
+    // // print_str(str1);
+    // // let str3 = print_return_string(str1);
+    // // println!("{}", str3);
+    // change_string(&mut str1);
+
+
+    // println!("5 + 4 = {}", get_sum_gen(5, 4));
+    // println!("3.2 + 4.6 = {}", get_sum_gen(3.2, 4.6));
+
+    // let num_list = vec![1,2,3,4,5];
+    // println!("Sum of list = {}", sum_list(&num_list))
+
     // println!("What is your name?");
     // let mut name = String::new();
     // let greeting: &str = "Nice to meet you";
